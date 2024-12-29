@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keras2C Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="file"], input[type="text"] {
+            display: block;
+            margin: 10px 0;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .instructions {
+            background-color: #e9ecef;
+            padding: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #007BFF;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function validateFileSize() {
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+            if (file && file.size > 100 * 1024 * 1024) { // 100 MB in bytes
+                alert('File size exceeds 100 MB. Please upload a smaller file.');
+                fileInput.value = ""; // Clear the input
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Keras2C Converter</h1>
+        <p>Convert your Keras `.h5` models to C code instantly!</p>
+
+        <div class="instructions">
+            <h3>How to Use:</h3>
+            <ol>
+                <li>Click the "Choose File" button to upload your Keras `.h5` model.</li>
+                <li>Ensure the model file is valid and does not exceed 100 MB.</li>
+                <li>Enter the desired function name for the conversion.</li>
+                <li>Check the box to confirm you understand that your data is not stored.</li>
+                <li>Click "Convert to C" to start the conversion process.</li>
+                <li>Download the generated `.c` file when the conversion is complete.</li>
+            </ol>
+        </div>
+
+        <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="return validateFileSize()">
+            <label for="file">Upload your .h5 model:</label>
+            <input type="file" name="file" id="file" required>
+
+            <label for="function_name">Function Name:</label>
+            <input type="text" name="function_name" id="function_name" placeholder="Enter desired function name" required>
+
+            <p><input type="checkbox" required> I understand that my data is not stored on this server.</p>
+            <button type="submit">Convert to C</button>
+        </form>
+        
+        <div class="footer">
+            <p><a href="/about">About this website</a></p>
+        </div>
+    </div>
+</body>
+</html>
