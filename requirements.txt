@@ -1,7 +1,7 @@
 # This is an implicit value, here for clarity
 --index-url https://pypi.python.org/simple/
 
-numpy == 1.22.0
+numpy >= 1.22.0
 tensorflow >= 2.0
 flask
 
