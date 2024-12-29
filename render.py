@@ -120,5 +120,8 @@ def upload_file():
 def about():
     return render_template('about.html')
 
-if __name__ == '__main__':
-    app.run(debug=False)
+# if __name__ == '__main__':
+#     app.run(debug=False)
+if __name__ == "__main__":
+    from waitress import serve
+    serve(app, host="0.0.0.0", port=1000)
